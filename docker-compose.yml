@@ -1,0 +1,28 @@
+version: '3'
+services:
+  redis:
+    container_name: redis
+    image: "redis:alpine"
+
+  worker:
+    container_name: rq_worker
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: rq worker --url redis://redis:6379
+    depends_on:
+      - redis
+    links:
+      - redis
+
+  endpoint:
+    container_name: endpoint
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: python ./endpoint.py
+    ports:
+      - '0.0.0.0:5000:5000'
+    depends_on:
+      - worker
+      - redis
