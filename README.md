@@ -12,9 +12,9 @@ Ensure that redis server is up, cd to content_api and run python tests.py
 Ensure that docker daemon is up and run docker-compose up while being in project root directory
 
 ## Endpoints
-- /add_task/<type>/<url> - add tasks of a given type (text/images) to scrap given url
-- /check_status/<id> - checks job status of given id
-- /get_page/<url> - send back zip with all resources found about url
+- /add_task/\<type>?url=website.com - add tasks of a given type (text/images) to scrap given url
+- /check_status/\<id> - checks job status of given id
+- /get_page/\<url> - send back zip with all resources found about url
 
 
 
