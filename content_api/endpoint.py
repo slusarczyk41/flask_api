@@ -13,7 +13,7 @@ redis = Redis(host = 'redis')
 queue = Queue(connection = redis)
 
 
-@app.route("/add_task/<type>")
+@app.route("/add_task/<type>", methods = ['POST'])
 def add_task(type):
     if not request.args.get("url"):
         return "Url not specified"
@@ -27,13 +27,13 @@ def add_task(type):
             {job.enqueued_at}. {len(queue)} tasks in the queue"
 
 
-@app.route("/check_status/<id>")
+@app.route("/check_status/<id>", methods = ['GET'])
 def check_status(id):
     job = Job.fetch(id, connection = redis)
     return job.get_status()
 
 
-@app.route("/get_page/<url>")
+@app.route("/get_page/<url>", methods = ['GET'])
 def get_page(url):
     zip_file = make_archive(url, 'zip', f"data/{url}")
     return send_file(zip_file,

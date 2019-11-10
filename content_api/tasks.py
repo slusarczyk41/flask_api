@@ -22,6 +22,7 @@ def scrap_text(url):
     with open(f"data/{save_url}/text", 'w') as f:
         f.write(text)
 
+
 def download_images(url):
     soup = BeautifulSoup(get(url).text, 'html.parser')
 
