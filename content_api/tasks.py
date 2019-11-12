@@ -1,7 +1,7 @@
 from requests import get
 from bs4 import BeautifulSoup
 from datetime import datetime as dt
-from os import listdir, mkdir
+from os import listdir, makedirs
 from shutil import copyfileobj
 
 
@@ -17,7 +17,7 @@ def scrap_text(url):
 
     save_url = url.split("//")[-1]
     if save_url not in listdir("data"):
-        mkdir(f"data/{save_url}")
+        makedirs(f"data/{save_url}", exist_ok = True)
 
     with open(f"data/{save_url}/text", 'w') as f:
         f.write(text)
@@ -28,9 +28,9 @@ def download_images(url):
 
     save_url = url.split("//")[-1]
     if save_url not in listdir("data"):
-        mkdir(f"data/{save_url}")
+        makedirs(f"data/{save_url}", exist_ok = True)
     if "images" not in listdir(f"data/{save_url}"):
-        mkdir(f"data/{save_url}/images")
+        makedirs(f"data/{save_url}/images", exist_ok = True)
 
     for img_tag in soup.find_all('img'):
         response = get(img_tag['src'], stream = True)

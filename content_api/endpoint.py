@@ -33,7 +33,7 @@ def check_status(id):
     return job.get_status()
 
 
-@app.route("/get_page/<url>", methods = ['GET'])
+@app.route("/get_page/<path:url>", methods = ['GET'])
 def get_page(url):
     zip_file = make_archive(url, 'zip', f"data/{url}")
     return send_file(zip_file,
