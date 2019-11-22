@@ -2,6 +2,7 @@ from flask import Flask, request, send_file
 from redis import Redis
 from rq import Queue
 from rq.job import Job
+from rq.exceptions import NoSuchJobError
 from shutil import make_archive
 from waitress import serve
 
@@ -29,8 +30,12 @@ def add_task(type):
 
 @app.route("/check_status/<id>", methods = ['GET'])
 def check_status(id):
-    job = Job.fetch(id, connection = redis)
-    return job.get_status()
+    try:
+        job = Job.fetch(id, connection = redis)
+        return job.get_status()
+    except NoSuchJobError:
+        return 'There was no such job'
+
 
 
 @app.route("/get_page/<path:url>", methods = ['GET'])

@@ -18,7 +18,7 @@ Ensure that docker daemon is up and run docker-compose up while being in project
 
 
 
-## Komentarz
+## [PL] Komentarz
 Ze wszystkich użytych tutaj technologii kiedyś korzystałem, było to jednak albo dosyć dawno temu
 albo w niewielkim stopniu, dlatego połączenie dockera, flaska oraz scrapowania stron internetowych
 okazało się być zadaniem przy którym musiałem się nieco wysilić ale nie sprawiło mi to większych

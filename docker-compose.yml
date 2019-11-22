@@ -15,7 +15,7 @@ services:
     links:
       - redis
     volumes:
-      - api_volume:/code
+      - api_volume:/content_api
 
   endpoint:
     container_name: endpoint
@@ -29,7 +29,7 @@ services:
       - worker
       - redis
     volumes:
-      - api_volume:/code
+      - api_volume:/content_api
 
 volumes:
   api_volume:
